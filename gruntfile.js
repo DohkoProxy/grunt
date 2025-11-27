@@ -90,7 +90,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-concurrent');
 
-    grunt.registerTask('default', ['watch, replace']);
+    grunt.registerTask('default', ['watch', 'replace']);
     grunt.registerTask('build', ['less:production', 'htmlmin:dist', 'replace:dist', 'clean'])
 }
 
