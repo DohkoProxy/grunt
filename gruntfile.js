@@ -9,18 +9,15 @@ module.exports = function(grunt) {
                     'dev/styles/main.css' : 'src/styles/main.less'
                 }
             },
-
             production: {
                 options: {
                     compress: true,
                 },
-
                 files: {
                     'dist/styles/main.min.css' : 'src/styles/main.less'
                 }
             }
         },
-
         watch: {
             less: {
                 files: ['src/styles/**/*.less'],
@@ -31,13 +28,12 @@ module.exports = function(grunt) {
                 tasks: ['replace:dev']
             }
         },
-
         replace: {
             dev: {
                 options: {
                     patterns: [
                         {
-                            match: 'ENRERECO_DO_CSS',
+                            match: 'ENDERECO_DO_CSS',
                             replacement: './styles/main.css'
                         }
                     ]
@@ -51,7 +47,6 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-
             dist: {
                 options: {
                     patterns: [
@@ -71,20 +66,17 @@ module.exports = function(grunt) {
                 ]
             }
         },
-
         htmlmin: {
             dist: {
                 options: {
                     removeComments: true,
                     collapseWhitespace: true,
                 },
-
                 files: {
                     'prebuild/index.html': 'src/index.html'
                 }
             }
         },
-
         clean: [
             'prebuild'
         ]
