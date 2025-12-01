@@ -102,6 +102,10 @@ module.exports = function(grunt) {
                         {
                             match: 'ENDERECO_DO_CSS',
                             replacement: './styles/main.min.css'   // ← caminho relativo correto dentro de dist/
+                        },
+                        {
+                            match: 'ENDERECO_DO_JS',
+                            replacement: './scripts/main.min.js'
                         }
                         // corrigido: era ENRERECO_DO_CSS → agora é ENDERECO_DO_CSS
                     ]
@@ -131,7 +135,14 @@ module.exports = function(grunt) {
         },
 
         // Limpa pasta temporária
-        clean: ['prebuild']
+        clean: ['prebuild'],
+        uglify: {
+            target: {
+                files: {
+                    'dist/scripts/main.min.js':'src/scripts/main.js'
+                }
+            }
+        }
     });
 
     // Carrega os plugins
@@ -141,6 +152,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // TASKS
     // Desenvolvimento (roda tudo uma vez e fica no watch)
@@ -152,6 +164,7 @@ module.exports = function(grunt) {
         'copy:dist',         // ← copia fonts, imagens, etc.
         'htmlmin:dist',      // minifica o HTML → prebuild/index.html
         'replace:dist',      // troca o placeholder pelo CSS minificado
-        'clean'              // apaga a pasta temporária prebuild
+        'clean',
+        'uglify'            
     ]);
 };
